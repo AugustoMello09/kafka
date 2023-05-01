@@ -1,5 +1,6 @@
 package io.github.AugustoMello09.listeners;
 
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import io.github.AugustoMello09.listeners.custom.StrConsumerCustomListener;
@@ -20,7 +21,7 @@ public class StrConsumerListeners {
 		log.info("LOG ::: Receive message {}",message);
 	}
 	
-	@StrConsumerCustomListener(groupId = "group-2")
+	@KafkaListener(groupId = "group-2",topics = "str-topic" ,containerFactory = "validMessageContainerFactory")
 	public void history(String message) {
 		log.info("HISTORY ::: Receive message {}",message);
 	}
